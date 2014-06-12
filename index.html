@@ -224,11 +224,22 @@
         </aside>
         <section>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lacus lacus, sit amet vulputate tortor. Nam gravida dignissim feugiat. Mauris mattis cursus molestie. Ut tincidunt sapien id orci ornare vulputate. Phasellus scelerisque adipiscing euismod. Etiam euismod vulputate est, et fermentum nulla porta quis. Aenean id eros odio. Sed vehicula lorem dui. Proin in nunc purus, id rutrum ipsum. Nam tortor ante, ultricies nec egestas sed, laoreet eu libero.</p>
-            <p>Quisque quis turpis at mi venenatis varius et at mauris. Cras placerat felis a lacus viverra tempor. Vivamus et justo tellus. Cras consectetur mollis cursus. Integer vitae nibh sit amet tortor mattis aliquet. In elit turpis, dictum sit amet lobortis eget, pharetra ut erat. Donec commodo, ipsum ut vehicula gravida, est sem aliquet ante, vel rhoncus mi mi id sem. Cras mattis nisi id ante pretium tempus. Aenean non sem sit amet justo consequat malesuada. Integer eget iaculis sem. Curabitur condimentum massa at mi vestibulum ultrices. Donec sed sapien sit amet nunc cursus pharetra a sit amet augue. Sed eget metus at justo faucibus egestas sit amet at augue. Fusce ac leo magna, et placerat nibh.</p>
+            <p id="halfSection4">Quisque quis turpis at mi venenatis varius et at mauris. Cras placerat felis a lacus viverra tempor. Vivamus et justo tellus. Cras consectetur mollis cursus. Integer vitae nibh sit amet tortor mattis aliquet. In elit turpis, dictum sit amet lobortis eget, pharetra ut erat. Donec commodo, ipsum ut vehicula gravida, est sem aliquet ante, vel rhoncus mi mi id sem. Cras mattis nisi id ante pretium tempus. Aenean non sem sit amet justo consequat malesuada. Integer eget iaculis sem. Curabitur condimentum massa at mi vestibulum ultrices. Donec sed sapien sit amet nunc cursus pharetra a sit amet augue. Sed eget metus at justo faucibus egestas sit amet at augue. Fusce ac leo magna, et placerat nibh.</p>
         </section>
       </li>
       <li id="section4" class="section-row">
-        <aside>
+		<div id="navBig" style="width:100%; display:none; background-color:black">
+		  <ul>
+			<li><a href="#section1">Lorem</a></li>
+			<li><a href="#section2">Ipsum</a></li>
+			<li><a href="#section3">Dolor</a></li>
+			<li><a href="#section4">Sit</a></li>
+			<li><a href="#section5">Amet</a></li>
+		  </ul>
+		  
+		  <a href="https://github.com/bbarakaci/fixto" class="action">Check it on Github</a>
+		</div>	
+	  <aside>
           <h3>Sit</h3>
           <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_32x32_style">
@@ -271,10 +282,11 @@
   </footer>
 
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
   <script>window.jQuery || document.write('<script src="libs/jquery/jquery.js"><\/script>')</script>
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-5002e1366084f15f"></script>
   <script src="dist/fixto.min.js"></script>
+<script src="dist/waypoints.js"></script>  
 
   <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.0/styles/monokai.min.css">
   <script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script> -->
@@ -284,6 +296,22 @@
       //hljs.initHighlightingOnLoad();
       $('nav').fixTo('body');
       $('aside').fixTo('.section-row');
+	  
+	  $('#halfSection4').waypoint(function() {
+	  if ($('#navBig').is(':hidden'))
+	  {
+		$('nav').toggle('slide', 'left');
+		$('#navBig').toggle('slide', { direction: 'right' });
+		}
+	  });
+	  
+	  $('#section3').waypoint(function() {
+	  if ($('#navBig').is(':visible'))
+	  {
+		$('nav').toggle('slide', 'left');
+		$('#navBig').toggle('slide', { direction: 'right' });
+		}
+	  });	  
     });
   </script>
 </body>
