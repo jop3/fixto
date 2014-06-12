@@ -1,290 +1,291 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>fixto, a jQuery plugin for sticky positioning</title>
-  <meta name="description" content="">
+<!DOCTYPE html>
+<html>
 
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/style.css">
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Fixto : A jQuery plugin for sticky positioning" />
 
-  <style>
-  body {
-    background: rgb(235,241,246); /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(235,241,246,1) 0%, rgba(171,211,238,1) 50%, rgba(137,195,235,1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(235,241,246,1)), color-stop(50%,rgba(171,211,238,1)), color-stop(100%,rgba(137,195,235,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 100%); /* IE10+ */
-    background: linear-gradient(to bottom, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 100%); /* W3C */
-    color: #999;
-    font-family: "Calibri", "Trebuchet MS", Helvetica, Verdana, sans-serif;
-  }
-  p {
-    margin: 0 0 1em 0;
-  }
-  ul {
-    padding: 0;
-  }
-  li {
-    display: block;
-    margin: 0;
-  }
-  a, a:visited, a:focus {
-    color: #9cf;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #3cf;
-  }
-  #main {
-    margin: 0 auto;
-    max-width: 900px;
-  }
-  header {
-    border-bottom: 1px solid #333;
-    text-align: center;
-  }
-  #content {
-    background: #fff;
-    margin: 0;
-    margin-right: 30%;
-    padding: 0;
-  }
-  #content li {
-    padding: 10px 30px 30px 10px;
-    border-bottom: 1px solid #999;
-  }
-  #content section {
-    margin: 20px 0;
-    margin-left: 30%;
-  }
-  #content aside li {
-    border: none;
-  }
-  #content aside {
-    float: left;
-    width: 25%;
-    padding-top: 20px;
-  }
-  #content aside h3 {
-    margin: 0;
-    margin-bottom: 16px;
-  }
-  .bar {
-    background: #333; /* Old browsers */
-    background: -moz-linear-gradient(top, #4c4c4c 0%, #595959 12%, #666666 25%, #474747 39%, #2c2c2c 50%, #111111 60%, #000000 76%, #2b2b2b 91%, #131313 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4c4c4c), color-stop(12%,#595959), color-stop(25%,#666666), color-stop(39%,#474747), color-stop(50%,#2c2c2c), color-stop(60%,#111111), color-stop(76%,#000000), color-stop(91%,#2b2b2b), color-stop(100%,#131313)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#111111 60%,#000000 76%,#2b2b2b 91%,#131313 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#111111 60%,#000000 76%,#2b2b2b 91%,#131313 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#111111 60%,#000000 76%,#2b2b2b 91%,#131313 100%); /* IE10+ */
-    background: linear-gradient(to bottom, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#111111 60%,#000000 76%,#2b2b2b 91%,#131313 100%); /* W3C */
-    padding: 10px 0;
-    text-align: center;
-    clear: both;
-  }
-  nav {   
-    float: right;
-    width: 30%;
-    z-index: 2;
-  }
-  nav ul {
-    background: #333;
-    padding: 30px;    
-  }
-  code {
-    font-size: 11px;
-  }
-  
-  .addthis_toolbox {
-      height : 170px;
-      width:40px;
-  }
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    a.action {
-      background-color: #ff7518;
-      padding:10px;
-      text-align:center;
-      display:block;
-      color:white;
-    }
-  
-  @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
-    #content {
-      margin-right: auto;
-    }
+    <title>Fixto</title>
+  </head>
 
-    #content,
-    #content section,
-    nav {
-      float: none;
-    }
-    #content,
-    #content section,
-    nav {
-      width: auto;
-    }
-    nav ul {
-      margin: 0 auto;
-      padding: 0;
-      overflow: hidden;
-    }
-    nav li {
-      border-right: 1px solid #9cf;
-      float: left;
-      padding: 0 10px;
-    }
-    nav li:last-child {
-      border-right: 0;
-    }
-    #content aside {
-      padding-top: 70px;
-    }
+  <body>
 
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/jop3/fixto">View on GitHub</a>
 
-  }
-  </style>
+          <h1 id="project_title">Fixto</h1>
+          <h2 id="project_tagline">A jQuery plugin for sticky positioning</h2>
 
-  <script src="modernizr-2.5.3.min.js"></script>
-</head>
-<body>
-  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-  <header>
-    <h1>fixto</h1>
-    <h2>A jQuery plugin for sticky positioning</h2>
-    <h3>Fix containers to the viewport relative to an ancestor</h3>
-    <p>Scroll down please</p>
-  </header>
-  <article id="main" role="main">
-    <nav>
-      <ul id="menu">
-        <li><a href="#section1">Lorem</a></li>
-        <li><a href="#section2">Ipsum</a></li>
-        <li><a href="#section3">Dolor</a></li>
-        <li><a href="#section4">Sit</a></li>
-        <li><a href="#section5">Amet</a></li>
-      </ul>
-      
-      <a href="https://github.com/bbarakaci/fixto" class="action">Check it on Github</a>
-    </nav>
-    <ul id="content">
-      <li id="section1" class="section-row">
-        <aside>
-                <h3>Lorem</h3>
-                <!-- AddThis Button BEGIN -->
-                  <div class="addthis_toolbox addthis_32x32_style">
-                  <a class="addthis_button_facebook"></a>
-                  <a class="addthis_button_twitter"></a>
-                  <a class="addthis_button_google_plusone_badge"></a>
-                  <a class="addthis_button_tumblr"></a>
-                  <a class="addthis_button_compact"></a>
-                  </div>
-                  <!-- AddThis Button END -->          
-        </aside>
-        <section>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lacus lacus, sit amet vulputate tortor. Nam gravida dignissim feugiat. Mauris mattis cursus molestie. Ut tincidunt sapien id orci ornare vulputate. Phasellus scelerisque adipiscing euismod. Etiam euismod vulputate est, et fermentum nulla porta quis. Aenean id eros odio. Sed vehicula lorem dui. Proin in nunc purus, id rutrum ipsum. Nam tortor ante, ultricies nec egestas sed, laoreet eu libero.</p>
-            <p>Quisque quis turpis at mi venenatis varius et at mauris. Cras placerat felis a lacus viverra tempor. Vivamus et justo tellus. Cras consectetur mollis cursus. Integer vitae nibh sit amet tortor mattis aliquet. In elit turpis, dictum sit amet lobortis eget, pharetra ut erat. Donec commodo, ipsum ut vehicula gravida, est sem aliquet ante, vel rhoncus mi mi id sem. Cras mattis nisi id ante pretium tempus. Aenean non sem sit amet justo consequat malesuada. Integer eget iaculis sem. Curabitur condimentum massa at mi vestibulum ultrices. Donec sed sapien sit amet nunc cursus pharetra a sit amet augue. Sed eget metus at justo faucibus egestas sit amet at augue. Fusce ac leo magna, et placerat nibh.</p>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/jop3/fixto/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/jop3/fixto/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-        </section>
-      </li>
-      <li id="section2" class="section-row">
-        <aside>
-          <h3>Ipsum</h3>
-          <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_32x32_style">
-            <a class="addthis_button_facebook"></a>
-            <a class="addthis_button_twitter"></a>
-            <a class="addthis_button_google_plusone_badge"></a>
-            <a class="addthis_button_tumblr"></a>
-            <a class="addthis_button_compact"></a>
-            </div>
-            <!-- AddThis Button END -->
-        </aside>
-        <section>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lacus lacus, sit amet vulputate tortor. Nam gravida dignissim feugiat. Mauris mattis cursus molestie. Ut tincidunt sapien id orci ornare vulputate. Phasellus scelerisque adipiscing euismod. Etiam euismod vulputate est, et fermentum nulla porta quis. Aenean id eros odio. Sed vehicula lorem dui. Proin in nunc purus, id rutrum ipsum. Nam tortor ante, ultricies nec egestas sed, laoreet eu libero.</p>
-            <p>Quisque quis turpis at mi venenatis varius et at mauris. Cras placerat felis a lacus viverra tempor. Vivamus et justo tellus. Cras consectetur mollis cursus. Integer vitae nibh sit amet tortor mattis aliquet. In elit turpis, dictum sit amet lobortis eget, pharetra ut erat. Donec commodo, ipsum ut vehicula gravida, est sem aliquet ante, vel rhoncus mi mi id sem. Cras mattis nisi id ante pretium tempus. Aenean non sem sit amet justo consequat malesuada. Integer eget iaculis sem. Curabitur condimentum massa at mi vestibulum ultrices. Donec sed sapien sit amet nunc cursus pharetra a sit amet augue. Sed eget metus at justo faucibus egestas sit amet at augue. Fusce ac leo magna, et placerat nibh.</p>
-        </section>
-      </li>
-      <li id="section3" class="section-row">
-        <aside>
-          <h3>Dolor</h3>
-          <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_32x32_style">
-            <a class="addthis_button_facebook"></a>
-            <a class="addthis_button_twitter"></a>
-            <a class="addthis_button_google_plusone_badge"></a>
-            <a class="addthis_button_tumblr"></a>
-            <a class="addthis_button_compact"></a>
-            </div>
-            <!-- AddThis Button END -->
-        </aside>
-        <section>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lacus lacus, sit amet vulputate tortor. Nam gravida dignissim feugiat. Mauris mattis cursus molestie. Ut tincidunt sapien id orci ornare vulputate. Phasellus scelerisque adipiscing euismod. Etiam euismod vulputate est, et fermentum nulla porta quis. Aenean id eros odio. Sed vehicula lorem dui. Proin in nunc purus, id rutrum ipsum. Nam tortor ante, ultricies nec egestas sed, laoreet eu libero.</p>
-            <p>Quisque quis turpis at mi venenatis varius et at mauris. Cras placerat felis a lacus viverra tempor. Vivamus et justo tellus. Cras consectetur mollis cursus. Integer vitae nibh sit amet tortor mattis aliquet. In elit turpis, dictum sit amet lobortis eget, pharetra ut erat. Donec commodo, ipsum ut vehicula gravida, est sem aliquet ante, vel rhoncus mi mi id sem. Cras mattis nisi id ante pretium tempus. Aenean non sem sit amet justo consequat malesuada. Integer eget iaculis sem. Curabitur condimentum massa at mi vestibulum ultrices. Donec sed sapien sit amet nunc cursus pharetra a sit amet augue. Sed eget metus at justo faucibus egestas sit amet at augue. Fusce ac leo magna, et placerat nibh.</p>
-        </section>
-      </li>
-      <li id="section4" class="section-row">
-        <aside>
-          <h3>Sit</h3>
-          <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_32x32_style">
-            <a class="addthis_button_facebook"></a>
-            <a class="addthis_button_twitter"></a>
-            <a class="addthis_button_google_plusone_badge"></a>
-            <a class="addthis_button_tumblr"></a>
-            <a class="addthis_button_compact"></a>
-            </div>
-            <!-- AddThis Button END -->
-        </aside>
-        <section>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lacus lacus, sit amet vulputate tortor. Nam gravida dignissim feugiat. Mauris mattis cursus molestie. Ut tincidunt sapien id orci ornare vulputate. Phasellus scelerisque adipiscing euismod. Etiam euismod vulputate est, et fermentum nulla porta quis. Aenean id eros odio. Sed vehicula lorem dui. Proin in nunc purus, id rutrum ipsum. Nam tortor ante, ultricies nec egestas sed, laoreet eu libero.</p>
-            <p>Quisque quis turpis at mi venenatis varius et at mauris. Cras placerat felis a lacus viverra tempor. Vivamus et justo tellus. Cras consectetur mollis cursus. Integer vitae nibh sit amet tortor mattis aliquet. In elit turpis, dictum sit amet lobortis eget, pharetra ut erat. Donec commodo, ipsum ut vehicula gravida, est sem aliquet ante, vel rhoncus mi mi id sem. Cras mattis nisi id ante pretium tempus. Aenean non sem sit amet justo consequat malesuada. Integer eget iaculis sem. Curabitur condimentum massa at mi vestibulum ultrices. Donec sed sapien sit amet nunc cursus pharetra a sit amet augue. Sed eget metus at justo faucibus egestas sit amet at augue. Fusce ac leo magna, et placerat nibh.</p>
-        </section>
-      </li>
-      <li id="section5" class="section-row">
-        <aside>
-          <h3>Amet</h3>
-          <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_32x32_style">
-            <a class="addthis_button_facebook"></a>
-            <a class="addthis_button_twitter"></a>
-            <a class="addthis_button_google_plusone_badge"></a>
-            <a class="addthis_button_tumblr"></a>
-            <a class="addthis_button_compact"></a>
-            </div>
-            <!-- AddThis Button END -->
-        </aside>
-        <section>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae lacus lacus, sit amet vulputate tortor. Nam gravida dignissim feugiat. Mauris mattis cursus molestie. Ut tincidunt sapien id orci ornare vulputate. Phasellus scelerisque adipiscing euismod. Etiam euismod vulputate est, et fermentum nulla porta quis. Aenean id eros odio. Sed vehicula lorem dui. Proin in nunc purus, id rutrum ipsum. Nam tortor ante, ultricies nec egestas sed, laoreet eu libero.</p>
-          <p>Quisque quis turpis at mi venenatis varius et at mauris. Cras placerat felis a lacus viverra tempor. Vivamus et justo tellus. Cras consectetur mollis cursus. Integer vitae nibh sit amet tortor mattis aliquet. In elit turpis, dictum sit amet lobortis eget, pharetra ut erat. Donec commodo, ipsum ut vehicula gravida, est sem aliquet ante, vel rhoncus mi mi id sem. Cras mattis nisi id ante pretium tempus. Aenean non sem sit amet justo consequat malesuada. Integer eget iaculis sem. Curabitur condimentum massa at mi vestibulum ultrices. Donec sed sapien sit amet nunc cursus pharetra a sit amet augue. Sed eget metus at justo faucibus egestas sit amet at augue. Fusce ac leo magna, et placerat nibh.</p>
-        </section>
-      </li>
-    </ul>
-  </article>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="fixto" class="anchor" href="#fixto"><span class="octicon octicon-link"></span></a>fixto</h1>
 
-  <footer class="bar">
-      
-  </footer>
+<p>A jQuery plugin for sticky positioning. Fix containers to the viewport relative to an ancestor. To see it in action you can see the <a href="http://bbarakaci.github.com/fixto">demo page</a> or development pages <a href="http://bbarakaci.github.com/fixto/dev1.html">development page 1</a>, <a href="http://bbarakaci.github.com/fixto/dev2.html">development page 2</a>, <a href="http://bbarakaci.github.com/fixto/dev3.html">development page 3</a>.</p>
 
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#browser-support">Browser support</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#styling">Styling</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#public-methods">Public Methods</a></li>
+<li><a href="#known-issues">Known issues</a></li>
+<li><a href="#release-notes">Release notes</a></li>
+<li><a href="#position-sticky-caveats">Position sticky caveats</a></li>
+</ul><h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="libs/jquery/jquery.js"><\/script>')</script>
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-5002e1366084f15f"></script>
-  <script src="dist/fixto.min.js"></script>
+<ul>
+<li>Responsive</li>
+<li>Handles multiple instances</li>
+<li>Start, stop, destroy</li>
+<li>Sensitive to viewport height</li>
+<li>Handles positioning context created by transformed ancestors.</li>
+<li>Uses native position sticky when available</li>
+</ul><h2>
+<a name="browser-support" class="anchor" href="#browser-support"><span class="octicon octicon-link"></span></a>Browser support</h2>
 
-  <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.0/styles/monokai.min.css">
-  <script src="http://yandex.st/highlightjs/7.0/highlight.min.js"></script> -->
+<p>Modern browsers, ie8+ are supported.</p>
 
-  <script>
-    $(function() {
-      //hljs.initHighlightingOnLoad();
-      $('nav').fixTo('body');
-      $('aside').fixTo('.section-row');
-    });
-  </script>
-</body>
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>Download the <a href="https://raw.github.com/bbarakaci/fixto/master/dist/fixto.min.js">production version</a> or the <a href="https://raw.github.com/bbarakaci/fixto/master/dist/fixto.js">development version</a>.</p>
+
+<p>Add jQuery</p>
+
+<pre><code>&lt;script src="jquery.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Add fixTo</p>
+
+<pre><code>&lt;script src="fixto.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Use it with jQuery</p>
+
+<pre><code>$('#nav').fixTo('body');
+</code></pre>
+
+<p>You can fix multiple containers to multiple ancestors. Make sure your selectors match exactly.</p>
+
+<pre><code>$('.sticky').fixTo('.sticky-holder');
+</code></pre>
+
+<p>Passing options</p>
+
+<pre><code>$('#left-banner').fixTo('#left-column', {
+    className : 'my-class-name',
+    zIndex: 10,
+    mind: '#header',
+    top: 20
+});
+</code></pre>
+
+<p>Instantiate without jQuery:</p>
+
+<pre><code>var sticky = fixto.fixTo(domElementToFix, domElementToBeFixed, options);
+</code></pre>
+
+<h2>
+<a name="styling" class="anchor" href="#styling"><span class="octicon octicon-link"></span></a>Styling</h2>
+
+<p>When the container is fixed, it will receive the class name <code>fixto-fixed</code>. You may use this class or you may pass any other class name as an option. This feature will not work when native postion sticky is used. See <a href="#known-issues">known issues</a></p>
+
+<h2>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<h3>
+<a name="classname-string" class="anchor" href="#classname-string"><span class="octicon octicon-link"></span></a>className (String)</h3>
+
+<p>See above example.</p>
+
+<h3>
+<a name="zindex-number" class="anchor" href="#zindex-number"><span class="octicon octicon-link"></span></a>zIndex (Number)</h3>
+
+<p>Although you can set z-index with css, it is possible to pass a <code>zIndex</code> option. See above example.</p>
+
+<h3>
+<a name="mind-selector" class="anchor" href="#mind-selector"><span class="octicon octicon-link"></span></a>mind (selector)</h3>
+
+<p>When you have other fixed containers on a page, pass those containers as mind option to prevent overlapping.</p>
+
+<p>Example</p>
+
+<pre><code>$('#header').fixTo('body');
+
+$('#left-banner').fixTo('#left-column', {
+    mind: '#header'
+});
+</code></pre>
+
+<p>Selector can be in any form that jQuery can handle. You can pass multiple elements.</p>
+
+<h3>
+<a name="top-number" class="anchor" href="#top-number"><span class="octicon octicon-link"></span></a>top (Number)</h3>
+
+<p>In pixels. Fixed element will preserve a gap on its top.</p>
+
+<h3>
+<a name="usenativesticky-boolean" class="anchor" href="#usenativesticky-boolean"><span class="octicon octicon-link"></span></a>useNativeSticky (Boolean)</h3>
+
+<p>Fixto will use native position sticky when supported by the browser. Set this option to <code>false</code> to disable.</p>
+
+<p>This option can not be overwritten after initialization. If you need to do so, you can destroy the instance and create a new one.</p>
+
+<p>While fixto can fix a container to any of its ancestors, native sticky will fix it to the nearest containing block, which is generally its parent. </p>
+
+<p>There is no native way to know if the container is sticked, so it will not receive the css class name. </p>
+
+<p>Native sticky will perform very well as all the work is done by the browser. Without native sticky you will notice delayed response and undesired effects on IOS as all the javascript execuion is halted on scroll. Setting <code>-webkit-transform: translate(0)</code> to parent container will eliminate undesired effect, delayed response will remain.</p>
+
+<h2>
+<a name="public-methods" class="anchor" href="#public-methods"><span class="octicon octicon-link"></span></a>Public Methods</h2>
+
+<p>Following methods can be called directly on the instance or with jQuery.</p>
+
+<h3>
+<a name="refresh" class="anchor" href="#refresh"><span class="octicon octicon-link"></span></a>refresh</h3>
+
+<p>Fixto tries to adapt to the layout during scroll and window resize. In case the layout changes dynamically at any time, use refresh to force fixto to adapt. </p>
+
+<pre><code>instance.refresh();
+</code></pre>
+
+<p>jQuery:</p>
+
+<pre><code>$('#nav').fixTo('refresh');
+</code></pre>
+
+<h3>
+<a name="setoptionsoptions" class="anchor" href="#setoptionsoptions"><span class="octicon octicon-link"></span></a>setOptions(options)</h3>
+
+<p>Resets the options. Fixto will refresh itself automatically after this method is used.</p>
+
+<pre><code>instance.setOptions({
+    top: 10
+});
+</code></pre>
+
+<p>jQuery:</p>
+
+<pre><code>$('#nav').fixTo('setOptions', {
+    top: 10
+});
+</code></pre>
+
+<h3>
+<a name="destroy" class="anchor" href="#destroy"><span class="octicon octicon-link"></span></a>destroy</h3>
+
+<p>Destroys the instance:</p>
+
+<pre><code>instance.destroy();
+</code></pre>
+
+<p>jQuery:</p>
+
+<pre><code>$('#nav').fixTo('destroy');
+</code></pre>
+
+<h3>
+<a name="stop" class="anchor" href="#stop"><span class="octicon octicon-link"></span></a>stop</h3>
+
+<p>Stops the instances behavior without destroying the instance.</p>
+
+<pre><code>instance.stop();
+</code></pre>
+
+<p>jQuery:</p>
+
+<pre><code>$('#nav').fixTo('stop');
+</code></pre>
+
+<h3>
+<a name="start" class="anchor" href="#start"><span class="octicon octicon-link"></span></a>start</h3>
+
+<p>Starts the instances behavior.</p>
+
+<pre><code>instance.start();
+</code></pre>
+
+<p>jQuery:</p>
+
+<pre><code>$('#nav').fixTo('start');
+</code></pre>
+
+<h2>
+<a name="known-issues" class="anchor" href="#known-issues"><span class="octicon octicon-link"></span></a>Known issues</h2>
+
+<ul>
+<li>Doesn't work on elements having <code>margin:auto</code>. You will need an additional wrapper around the element. This is because webkit differs from other browsers about reporting the computed margin values.</li>
+<li>There is flickering on Safari when there is a transformed parent and if native sticky positioning is not used. Still couldn't resolve that. Safari already supports native sticky positioning so you will observe this issue only if you disable native sticky support.</li>
+<li>
+<p>Some features are not implemented for the native position sticky version. Fixto normally does a lot of calculations during scroll. These calculations are not done when using native position sticky. Although it is possible to implement these features by doing same calculations, for now it is decided not to do so, for performance reasons and for the sake of obeying to the natural development of position sticky. Finally, one day, we will not need to use fixto anymore. </p>
+
+<p>Or we will choose the other path. We will decide to implement the features we need to have fixto as a plugin that does its own magic. Please open an issue if you would like to see additional features when running on native sticky mode. If there is an issue, just participate with your +1. It will help us to decide for the future.</p>
+</li>
+</ul><h2>
+<a name="release-notes" class="anchor" href="#release-notes"><span class="octicon octicon-link"></span></a>Release notes</h2>
+
+<h3>
+<a name="030" class="anchor" href="#030"><span class="octicon octicon-link"></span></a>0.3.0</h3>
+
+<ul>
+<li>Use native position sticky when supported.</li>
+<li>Enabled for touch devices</li>
+<li>Margin top of the fixed element will be ignored at fixed state, to be consistent with native sticky. This might break your existing layout if you used margin top on the target container with previous versions of fixto.</li>
+<li>Top option added</li>
+<li>useNativeSticky option added</li>
+<li>setOptions method added</li>
+<li>refresh method added</li>
+<li>No need to use it on document ready. Feature detection will be done during first instantiation.</li>
+</ul><h3>
+<a name="020" class="anchor" href="#020"><span class="octicon octicon-link"></span></a>0.2.0</h3>
+
+<ul>
+<li>Ancestors with css transform rules does not break the functionality anymore.</li>
+<li>Needs to be used only during or after document ready</li>
+</ul><h2>
+<a name="position-sticky-caveats" class="anchor" href="#position-sticky-caveats"><span class="octicon octicon-link"></span></a>Position sticky caveats</h2>
+
+<p>You might be wondering why position sticky does not work for your layout.</p>
+
+<p>Position sticky won’t work when:</p>
+
+<ul>
+<li>the positioned element has an ancestor with an unintended overflow value of “auto”, “hidden” or “scroll”.</li>
+<li>the positioned element has an ancestor with a computed height of zero, means, all the elements inside the container ran out of flow (floated or absolutely positioned) thus its height is 0. Clear properly if you have floated elements, but you can’t use overflow on the parent to clear, because of the rule above.</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Fixto maintained by <a href="https://github.com/jop3">jop3</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
 </html>
