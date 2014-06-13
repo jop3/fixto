@@ -1,291 +1,55 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Fixto : A jQuery plugin for sticky positioning" />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Fixto</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/jop3/fixto">View on GitHub</a>
-
-          <h1 id="project_title">Fixto</h1>
-          <h2 id="project_tagline">A jQuery plugin for sticky positioning</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/jop3/fixto/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/jop3/fixto/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="fixto" class="anchor" href="#fixto"><span class="octicon octicon-link"></span></a>fixto</h1>
-
-<p>A jQuery plugin for sticky positioning. Fix containers to the viewport relative to an ancestor. To see it in action you can see the <a href="http://bbarakaci.github.com/fixto">demo page</a> or development pages <a href="http://bbarakaci.github.com/fixto/dev1.html">development page 1</a>, <a href="http://bbarakaci.github.com/fixto/dev2.html">development page 2</a>, <a href="http://jop3.github.com/fixto/dev4.html">development page 3</a>.</p>
-
-<ul>
-<li><a href="#features">Features</a></li>
-<li><a href="#browser-support">Browser support</a></li>
-<li><a href="#getting-started">Getting Started</a></li>
-<li><a href="#usage">Usage</a></li>
-<li><a href="#styling">Styling</a></li>
-<li><a href="#options">Options</a></li>
-<li><a href="#public-methods">Public Methods</a></li>
-<li><a href="#known-issues">Known issues</a></li>
-<li><a href="#release-notes">Release notes</a></li>
-<li><a href="#position-sticky-caveats">Position sticky caveats</a></li>
-</ul><h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
-
-<ul>
-<li>Responsive</li>
-<li>Handles multiple instances</li>
-<li>Start, stop, destroy</li>
-<li>Sensitive to viewport height</li>
-<li>Handles positioning context created by transformed ancestors.</li>
-<li>Uses native position sticky when available</li>
-</ul><h2>
-<a name="browser-support" class="anchor" href="#browser-support"><span class="octicon octicon-link"></span></a>Browser support</h2>
-
-<p>Modern browsers, ie8+ are supported.</p>
-
-<h2>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
-
-<p>Download the <a href="https://raw.github.com/bbarakaci/fixto/master/dist/fixto.min.js">production version</a> or the <a href="https://raw.github.com/bbarakaci/fixto/master/dist/fixto.js">development version</a>.</p>
-
-<p>Add jQuery</p>
-
-<pre><code>&lt;script src="jquery.js"&gt;&lt;/script&gt;
-</code></pre>
-
-<p>Add fixTo</p>
-
-<pre><code>&lt;script src="fixto.min.js"&gt;&lt;/script&gt;
-</code></pre>
-
-<h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
-
-<p>Use it with jQuery</p>
-
-<pre><code>$('#nav').fixTo('body');
-</code></pre>
-
-<p>You can fix multiple containers to multiple ancestors. Make sure your selectors match exactly.</p>
-
-<pre><code>$('.sticky').fixTo('.sticky-holder');
-</code></pre>
-
-<p>Passing options</p>
-
-<pre><code>$('#left-banner').fixTo('#left-column', {
-    className : 'my-class-name',
-    zIndex: 10,
-    mind: '#header',
-    top: 20
-});
-</code></pre>
-
-<p>Instantiate without jQuery:</p>
-
-<pre><code>var sticky = fixto.fixTo(domElementToFix, domElementToBeFixed, options);
-</code></pre>
-
-<h2>
-<a name="styling" class="anchor" href="#styling"><span class="octicon octicon-link"></span></a>Styling</h2>
-
-<p>When the container is fixed, it will receive the class name <code>fixto-fixed</code>. You may use this class or you may pass any other class name as an option. This feature will not work when native postion sticky is used. See <a href="#known-issues">known issues</a></p>
-
-<h2>
-<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
-
-<h3>
-<a name="classname-string" class="anchor" href="#classname-string"><span class="octicon octicon-link"></span></a>className (String)</h3>
-
-<p>See above example.</p>
-
-<h3>
-<a name="zindex-number" class="anchor" href="#zindex-number"><span class="octicon octicon-link"></span></a>zIndex (Number)</h3>
-
-<p>Although you can set z-index with css, it is possible to pass a <code>zIndex</code> option. See above example.</p>
-
-<h3>
-<a name="mind-selector" class="anchor" href="#mind-selector"><span class="octicon octicon-link"></span></a>mind (selector)</h3>
-
-<p>When you have other fixed containers on a page, pass those containers as mind option to prevent overlapping.</p>
-
-<p>Example</p>
-
-<pre><code>$('#header').fixTo('body');
-
-$('#left-banner').fixTo('#left-column', {
-    mind: '#header'
-});
-</code></pre>
-
-<p>Selector can be in any form that jQuery can handle. You can pass multiple elements.</p>
-
-<h3>
-<a name="top-number" class="anchor" href="#top-number"><span class="octicon octicon-link"></span></a>top (Number)</h3>
-
-<p>In pixels. Fixed element will preserve a gap on its top.</p>
-
-<h3>
-<a name="usenativesticky-boolean" class="anchor" href="#usenativesticky-boolean"><span class="octicon octicon-link"></span></a>useNativeSticky (Boolean)</h3>
-
-<p>Fixto will use native position sticky when supported by the browser. Set this option to <code>false</code> to disable.</p>
-
-<p>This option can not be overwritten after initialization. If you need to do so, you can destroy the instance and create a new one.</p>
-
-<p>While fixto can fix a container to any of its ancestors, native sticky will fix it to the nearest containing block, which is generally its parent. </p>
-
-<p>There is no native way to know if the container is sticked, so it will not receive the css class name. </p>
-
-<p>Native sticky will perform very well as all the work is done by the browser. Without native sticky you will notice delayed response and undesired effects on IOS as all the javascript execuion is halted on scroll. Setting <code>-webkit-transform: translate(0)</code> to parent container will eliminate undesired effect, delayed response will remain.</p>
-
-<h2>
-<a name="public-methods" class="anchor" href="#public-methods"><span class="octicon octicon-link"></span></a>Public Methods</h2>
-
-<p>Following methods can be called directly on the instance or with jQuery.</p>
-
-<h3>
-<a name="refresh" class="anchor" href="#refresh"><span class="octicon octicon-link"></span></a>refresh</h3>
-
-<p>Fixto tries to adapt to the layout during scroll and window resize. In case the layout changes dynamically at any time, use refresh to force fixto to adapt. </p>
-
-<pre><code>instance.refresh();
-</code></pre>
-
-<p>jQuery:</p>
-
-<pre><code>$('#nav').fixTo('refresh');
-</code></pre>
-
-<h3>
-<a name="setoptionsoptions" class="anchor" href="#setoptionsoptions"><span class="octicon octicon-link"></span></a>setOptions(options)</h3>
-
-<p>Resets the options. Fixto will refresh itself automatically after this method is used.</p>
-
-<pre><code>instance.setOptions({
-    top: 10
-});
-</code></pre>
-
-<p>jQuery:</p>
-
-<pre><code>$('#nav').fixTo('setOptions', {
-    top: 10
-});
-</code></pre>
-
-<h3>
-<a name="destroy" class="anchor" href="#destroy"><span class="octicon octicon-link"></span></a>destroy</h3>
-
-<p>Destroys the instance:</p>
-
-<pre><code>instance.destroy();
-</code></pre>
-
-<p>jQuery:</p>
-
-<pre><code>$('#nav').fixTo('destroy');
-</code></pre>
-
-<h3>
-<a name="stop" class="anchor" href="#stop"><span class="octicon octicon-link"></span></a>stop</h3>
-
-<p>Stops the instances behavior without destroying the instance.</p>
-
-<pre><code>instance.stop();
-</code></pre>
-
-<p>jQuery:</p>
-
-<pre><code>$('#nav').fixTo('stop');
-</code></pre>
-
-<h3>
-<a name="start" class="anchor" href="#start"><span class="octicon octicon-link"></span></a>start</h3>
-
-<p>Starts the instances behavior.</p>
-
-<pre><code>instance.start();
-</code></pre>
-
-<p>jQuery:</p>
-
-<pre><code>$('#nav').fixTo('start');
-</code></pre>
-
-<h2>
-<a name="known-issues" class="anchor" href="#known-issues"><span class="octicon octicon-link"></span></a>Known issues</h2>
-
-<ul>
-<li>Doesn't work on elements having <code>margin:auto</code>. You will need an additional wrapper around the element. This is because webkit differs from other browsers about reporting the computed margin values.</li>
-<li>There is flickering on Safari when there is a transformed parent and if native sticky positioning is not used. Still couldn't resolve that. Safari already supports native sticky positioning so you will observe this issue only if you disable native sticky support.</li>
-<li>
-<p>Some features are not implemented for the native position sticky version. Fixto normally does a lot of calculations during scroll. These calculations are not done when using native position sticky. Although it is possible to implement these features by doing same calculations, for now it is decided not to do so, for performance reasons and for the sake of obeying to the natural development of position sticky. Finally, one day, we will not need to use fixto anymore. </p>
-
-<p>Or we will choose the other path. We will decide to implement the features we need to have fixto as a plugin that does its own magic. Please open an issue if you would like to see additional features when running on native sticky mode. If there is an issue, just participate with your +1. It will help us to decide for the future.</p>
-</li>
-</ul><h2>
-<a name="release-notes" class="anchor" href="#release-notes"><span class="octicon octicon-link"></span></a>Release notes</h2>
-
-<h3>
-<a name="030" class="anchor" href="#030"><span class="octicon octicon-link"></span></a>0.3.0</h3>
-
-<ul>
-<li>Use native position sticky when supported.</li>
-<li>Enabled for touch devices</li>
-<li>Margin top of the fixed element will be ignored at fixed state, to be consistent with native sticky. This might break your existing layout if you used margin top on the target container with previous versions of fixto.</li>
-<li>Top option added</li>
-<li>useNativeSticky option added</li>
-<li>setOptions method added</li>
-<li>refresh method added</li>
-<li>No need to use it on document ready. Feature detection will be done during first instantiation.</li>
-</ul><h3>
-<a name="020" class="anchor" href="#020"><span class="octicon octicon-link"></span></a>0.2.0</h3>
-
-<ul>
-<li>Ancestors with css transform rules does not break the functionality anymore.</li>
-<li>Needs to be used only during or after document ready</li>
-</ul><h2>
-<a name="position-sticky-caveats" class="anchor" href="#position-sticky-caveats"><span class="octicon octicon-link"></span></a>Position sticky caveats</h2>
-
-<p>You might be wondering why position sticky does not work for your layout.</p>
-
-<p>Position sticky won’t work when:</p>
-
-<ul>
-<li>the positioned element has an ancestor with an unintended overflow value of “auto”, “hidden” or “scroll”.</li>
-<li>the positioned element has an ancestor with a computed height of zero, means, all the elements inside the container ran out of flow (floated or absolutely positioned) thus its height is 0. Clear properly if you have floated elements, but you can’t use overflow on the parent to clear, because of the rule above.</li>
-</ul>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Fixto maintained by <a href="https://github.com/jop3">jop3</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
+<head>
+	<title>fixto, a jQuery plugin for sticky positioning</title>
+	<script src="libs/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="src/fixto.js" type="text/javascript" charset="utf-8"></script>
     
+    <style>
+    
+        body {
+            height: 2000px;
+        }
+    
+        .sticky {
+            background-color: red;
+        }
+    
+    </style>
+    
+    
+</head>
+<body>
 
-  </body>
+<div class="sticky">
+    sticky
+    
+    <button class="stop">Stop</button>
+    <button class="start">Start</button>
+    <button class="destroy">Destroy</button>
+    
+</div>
+
+
+
+
+
+
+<script>
+    $(function() {
+        var child = $('.sticky')[0];
+        var parent = $('body')[0];
+        var instance = window.fixto.fixTo(child, parent);
+        $('.stop').click(function () {
+            instance.stop();
+        });
+        $('.start').click(function () {
+            instance.start();
+        });
+        $('.destroy').click(function () {
+            instance.destroy();
+        });
+    });
+</script>
+</body>
 </html>
